@@ -10,9 +10,8 @@ int main()
 	double cutEdgelen = 24;
 	int frame = 6;
 
-	tool circle;
-	circle.toolcircle(mea_pos, rev_spe, frame);
-	circle.toolcutlen(helixAgl, toolR, cutEdgelen, frame);
-	circle.toolEdgecircle(mea_pos, toolR, frame);
+	NCtool::toolcircle(mea_pos, rev_spe, frame, "toolcircle.txt");
+	NCtool::toolcutlen(helixAgl, toolR, cutEdgelen, frame, "toolcutlen.txt");
+	NCtool::toolEdgecircle(mea_pos, toolR, frame, "toolEdgecircle.txt");
 	return 0; 
 }
