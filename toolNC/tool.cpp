@@ -15,13 +15,14 @@ void NCtool::toolcircle(double mea_pos,
 	//const char * file = "toolcircle.txt";
 
 	double measuring_position = -mea_pos;
-	double rotation_speed = 45 * frame;
+	double rotation_speed = 225 * frame;    
+	//225 = 360*60/photonum     photonum = 2*pi*r*4/3  4photos each 3mm 
 
 	ofstream fout(filename, ios_base::out | ios_base::trunc);
 
 	fout << "N10 G91" << endl;
-	fout << "N20 G00 X" << -mea_pos << endl;
-	fout << "N30 G01 A360 F" << 45 * frame << endl;
+	fout << "N20 G00 X" << measuring_position << endl;
+	fout << "N30 G01 A360 F" << rotation_speed << endl;
 	fout << "N40 G00 X" << mea_pos << " A" << -360 << endl;
 	fout << "N50 M30" << endl;
 	fout.close();
@@ -35,9 +36,10 @@ void NCtool::toolcutlen(double helixAgl,
 
 	//const char * file = "toolcutlen.txt";
 
-	double rotation_angle = (cutEdgelen * tan(helixAgl)) / 
+	double rotation_angle = (cutEdgelen * tan(helixAgl*PI/180)) / 
 		                    (2 * PI * toolR) * 360;
-	double rotation_speed = 45 * frame;
+	double rotation_speed = 30 * frame;
+	//30 = 24*60/photonum     photonum = 24*4/3  4photos each 3mm 
 
 	ofstream fout(filename, ios_base::out | ios_base::trunc);
 
@@ -55,6 +57,7 @@ void NCtool::toolcutlen(double helixAgl,
 	fout << "N90 G00 A-360" << endl;
 	fout << "N90 M30" << endl;
 	fout.close();
+	
 }
 
 void NCtool::toolEdgecircle(double mea_pos,
@@ -65,8 +68,9 @@ void NCtool::toolEdgecircle(double mea_pos,
 	//const char * file = "toolEdgecircle.txt";
 
 	double measuring_position = -mea_pos;
-	double rotation_speed = 45 * frame;
-	
+	double rotation_speed = 225 * frame;
+	//225 = 360*60/photonum     photonum = 2*pi*r*4/3  4photos each 3mm 
+
 	ofstream fout(filename, ios_base::out | ios_base::trunc);
 
 	fout << "N10 G91" << endl;
