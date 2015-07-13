@@ -1,3 +1,6 @@
+/*
+此文档是生成NC指令到txt文档中，旋转360度，刃线跟踪
+*/
 #include <iostream>
 #include "tool.h"
 
